@@ -1,0 +1,21 @@
+class Solution {
+    public int[] constructArray(int n, int k) {
+        int l = 1;
+        int r = k+1;
+        int i = 0;
+        int[] res = new int[n];
+        while(l<=r && i<n){
+            res[i++] = l++;
+            if(l<=r && i<n) res[i++] = r--;
+        }
+        for(int j=k+2;j<=n;j++){
+            res[j-1] = j;
+            
+        }
+        return res;
+    }
+}
+//本题暴力进行递归回溯就会超时,观察可得以下规律，因此可以使用这个规律生成一个满足条件的解
+//The requirement of k distinct distance can be achieved from 1, 2, ..., k+1 (<= n), by the following strategy:
+//1, k+1, 2, k, 3, k-1 ...;
+//The distance of this sequence is k, k-1, k-2, ..., 2, 1
