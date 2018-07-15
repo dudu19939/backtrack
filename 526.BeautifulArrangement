@@ -1,0 +1,27 @@
+class Solution {
+    boolean[] used;
+    int count = 0;
+    public int countArrangement(int N) {
+        if(N<=0) return 0;
+        if(N == 1) return 1;
+        used = new boolean[N+1];  //表示第index个数字是否使用过
+        int[] nums= new int[N+1];
+        search(N,1);
+        return count;
+        
+    }
+    private void search(int N, int pos){  //考虑第pos位
+        if(pos>N){
+            count++;
+        }
+        for(int i=1;i<=N;i++){
+            if(!used[i] && (i%pos == 0 || pos %i == 0)){
+                used[i]=true;
+                search(N,pos+1);
+                used[i] = false;
+            }
+            
+        }
+        
+    }
+}
